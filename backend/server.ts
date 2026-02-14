@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
+import type { CorsOptions } from "cors";
 import connectDB from "./config/db";
 import authRoutes from "./routes/auth";
 import chatRoutes from "./routes/chat";
@@ -15,15 +16,15 @@ const allowedOrigins = (process.env.FRONTEND_URL || "http://localhost:5173")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-      cb(new Error(`CORS blocked for origin: ${origin}`));
-    },
-    credentials: true,
-  })
-);
+const corsOptions: CorsOptions = {
+  origin: (origin: string | undefined, cb: (err: Error | null, allow?: boolean) => void) => {
+    const allowed = !origin || allowedOrigins.includes(origin);
+    cb(allowed ? null : new Error(`CORS blocked for origin: ${origin}`), allowed);
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 if (process.env.NODE_ENV === "development") {
   app.use((req: Request, _res: Response, next: NextFunction) => {

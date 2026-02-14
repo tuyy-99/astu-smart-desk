@@ -1,6 +1,8 @@
 import express, { Router } from 'express';
 import { body } from 'express-validator';
 import multer from 'multer';
+import type { Request } from 'express';
+import type { FileFilterCallback } from 'multer';
 import {
     askQuestion,
     uploadDocument,
@@ -22,7 +24,7 @@ const upload = multer({
     limits: {
         fileSize: 10 * 1024 * 1024 // 10MB limit
     },
-    fileFilter: (_req, file, cb) => {
+    fileFilter: (_req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
         if (
             file.mimetype === 'application/pdf' ||
             file.mimetype === 'text/plain' ||
