@@ -27,18 +27,18 @@ AI-powered campus assistant for Adama Science and Technology University (ASTU), 
 ```text
 astu-smartdesk/
 +- frontend/
-¦  +- components/
-¦  +- services/
-¦  +- App.tsx
-¦  +- package.json
+Â¦  +- components/
+Â¦  +- services/
+Â¦  +- App.tsx
+Â¦  +- package.json
 +- backend/
-¦  +- controllers/
-¦  +- models/
-¦  +- routes/
-¦  +- scripts/
-¦  +- server.ts
-¦  +- .env.example
-¦  +- package.json
+Â¦  +- controllers/
+Â¦  +- models/
+Â¦  +- routes/
+Â¦  +- scripts/
+Â¦  +- server.ts
+Â¦  +- .env.example
+Â¦  +- package.json
 +- README.md
 ```
 
@@ -89,18 +89,11 @@ Start frontend:
 npm run dev
 ```
 
-## Admin Access
-Public signup always creates `student` users. Use the admin script for admin credentials:
-
 ```bash
 cd backend
 npm run create-admin
 ```
 
-Default admin credentials after script reset/create:
-- Email: `admin@astu.edu.et`
-- Password: `Admin123!`
-- University ID: `ugr/00001/24`
 
 ## RAG Configuration
 Create Atlas Vector Search index named `vector_search` on `documents.embedding`.
