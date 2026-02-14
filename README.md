@@ -1,139 +1,504 @@
 # ASTU SmartDesk
 
-AI-powered campus assistant for Adama Science and Technology University (ASTU), with JWT auth, role-based admin tools, and Retrieval-Augmented Generation (RAG) using MongoDB Atlas Vector Search.
+An AI-powered campus assistant for Adama Science and Technology University (ASTU), featuring intelligent document retrieval, multilingual support, and comprehensive administrative tools.
+
+<!-- Add banner screenshot here -->
+
+## Overview
+
+ASTU SmartDesk is a full-stack web application that leverages Retrieval-Augmented Generation (RAG) to provide accurate, context-aware responses to student queries. The system combines MongoDB Atlas Vector Search, Voyage AI embeddings, and Google Gemini to deliver a seamless conversational experience in both English and Amharic.
 
 ## Key Features
-- AI chat assistant backed by document retrieval (RAG)
-- English and Amharic conversation support
-- JWT authentication and protected API routes
-- Role-based access (`student`, `staff`, `admin`)
-- Admin/Staff document management (upload, list, delete)
-- Chat history sessions per user
+
+### For Students
+- 🤖 **AI Chat Assistant** - Get instant answers about university services, procedures, and policies
+- 🌍 **Multilingual Support** - Converse in English or Amharic (አማርኛ)
+- 📚 **Document-Backed Responses** - All answers are grounded in official university documents
+- 💬 **Chat History** - Access previous conversations and continue where you left off
+- 🔍 **Smart Search** - Vector-based semantic search finds relevant information accurately
+
+### For Administrators
+- 📄 **Document Management** - Upload, organize, and delete knowledge base documents
+- 👥 **User Management** - Role-based access control (student, staff, admin)
+- 📊 **Analytics Dashboard** - Monitor system usage and document performance
+- 🔐 **Secure Authentication** - JWT-based authentication with protected routes
+
+### Technical Highlights
+- ⚡ **Fast Response Times** - Optimized vector search and caching
+- 🔒 **Enterprise Security** - JWT authentication, role-based access, CORS protection
+- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
+- 🚀 **Scalable Architecture** - Built on MongoDB Atlas with vector search capabilities
+
+## Screenshots
+
+### Landing Page
+<img width="1366" height="2135" alt="screencapture-localhost-3000-2026-02-14-21_17_59" src="https://github.com/user-attachments/assets/dc473a8c-8044-4885-89b9-9a164183467a" />
+
+<img width="1366" height="2092" alt="screencapture-localhost-3000-2026-02-14-22_24_16" src="https://github.com/user-attachments/assets/3f2d14df-2068-4172-b481-7390f624f7d4" />
+
+
+
+### Chat Interface
+<img width="512" height="554" alt="image" src="https://github.com/user-attachments/assets/b26520f8-cd4a-4488-ba69-4b7facad4540" />
+
+
+### Admin Dashboard
+<img width="1366" height="805" alt="screencapture-localhost-3000-2026-02-14-22_29_09" src="https://github.com/user-attachments/assets/cf64dfde-010b-4443-b840-ff638c9a6e69" />
+
+### Mobile View
+<img width="285" height="565" alt="image" src="https://github.com/user-attachments/assets/da9cda12-a6db-46f0-9d13-937de8fe9f8e" />
+
+### Authentication
+<img width="1366" height="688" alt="screencapture-localhost-3000-2026-02-14-22_26_40" src="https://github.com/user-attachments/assets/1570fa1e-04ad-4c43-a1c2-f690de0ca165" />
 
 ## Architecture
-- `frontend/`: React + Vite + TypeScript UI
-- `backend/`: Express + TypeScript API
-- `MongoDB Atlas`: user data, documents, chat history, vector search
-- `Voyage AI`: embeddings (`voyage-3-large`)
-- `Google Gemini`: response generation (`gemini-2.5-flash`)
+
+```
+┌─────────────────┐      ┌─────────────────┐      ┌──────────────────┐
+│                 │      │                 │      │                  │
+│  React Frontend │─────▶│  Express API    │─────▶│  MongoDB Atlas   │
+│  (Vite + TS)    │      │  (Node.js + TS) │      │  + Vector Search │
+│                 │      │                 │      │                  │
+└─────────────────┘      └─────────────────┘      └──────────────────┘
+                                │
+                                │
+                    ┌───────────┴───────────┐
+                    │                       │
+              ┌─────▼──────┐         ┌─────▼──────┐
+              │            │         │            │
+              │ Voyage AI  │         │   Gemini   │
+              │ Embeddings │         │    API     │
+              │            │         │            │
+              └────────────┘         └────────────┘
+```
 
 ## Tech Stack
-- Frontend: React, React Router, Vite, Tailwind CSS
-- Backend: Node.js, Express, Mongoose, express-validator
-- AI: `@google/generative-ai`, Voyage Embeddings API
-- Database: MongoDB Atlas + Atlas Vector Search
+
+### Frontend
+- **Framework**: React 19 with TypeScript
+- **Build Tool**: Vite 6
+- **Routing**: React Router DOM 7
+- **Styling**: Tailwind CSS 3
+- **HTTP Client**: Fetch API
+
+### Backend
+- **Runtime**: Node.js 18+
+- **Framework**: Express.js 4
+- **Language**: TypeScript 5
+- **Database**: MongoDB Atlas with Mongoose
+- **Authentication**: JWT (jsonwebtoken)
+- **Validation**: express-validator
+- **File Processing**: Multer, pdf-parse
+
+### AI & ML
+- **Embeddings**: Voyage AI (voyage-3-large, 1024 dimensions)
+- **LLM**: Google Gemini (gemini-pro)
+- **Vector Search**: MongoDB Atlas Vector Search
 
 ## Project Structure
-```text
+
+```
 astu-smartdesk/
-+- frontend/
-¦  +- components/
-¦  +- services/
-¦  +- App.tsx
-¦  +- package.json
-+- backend/
-¦  +- controllers/
-¦  +- models/
-¦  +- routes/
-¦  +- scripts/
-¦  +- server.ts
-¦  +- .env.example
-¦  +- package.json
-+- README.md
+├── frontend/
+│   ├── components/
+│   │   ├── AdminDashboard.tsx
+│   │   ├── Auth.tsx
+│   │   ├── ChatWidget.tsx
+│   │   ├── LandingPage.tsx
+│   │   └── Navbar.tsx
+│   ├── services/
+│   │   └── backendApi.ts
+│   ├── public/
+│   │   └── assets/
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── types.ts
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── backend/
+│   ├── controllers/
+│   │   ├── authController.ts
+│   │   └── chatController.ts
+│   ├── models/
+│   │   ├── User.ts
+│   │   ├── Document.ts
+│   │   └── ChatHistory.ts
+│   ├── routes/
+│   │   ├── auth.ts
+│   │   └── chat.ts
+│   ├── middleware/
+│   │   └── auth.ts
+│   ├── utils/
+│   │   ├── textProcessing.ts
+│   │   └── vectorUtils.ts
+│   ├── config/
+│   │   └── db.ts
+│   ├── scripts/
+│   │   └── createAdmin.ts
+│   ├── server.ts
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── docs/
+│   └── screenshots/
+├── README.md
+└── .gitignore
 ```
 
 ## Prerequisites
-- Node.js 18+
-- npm 9+
-- MongoDB Atlas cluster
-- Voyage API key
-- Gemini API key
 
-## Quick Start
-### 1. Backend setup
+Before you begin, ensure you have the following installed:
+
+- **Node.js** 18.0.0 or higher
+- **npm** 9.0.0 or higher
+- **MongoDB Atlas** account with a cluster
+- **Voyage AI** API key ([Get one here](https://www.voyageai.com/))
+- **Google Gemini** API key ([Get one here](https://aistudio.google.com/app/apikey))
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/astu-smartdesk.git
+cd astu-smartdesk
+```
+
+### 2. Backend Setup
+
 ```bash
 cd backend
 npm install
-copy .env.example .env
 ```
 
-Set these in `backend/.env`:
+Create a `.env` file in the `backend` directory:
+
+```bash
+cp .env.example .env
+```
+
+Configure your environment variables in `backend/.env`:
+
 ```env
+# Server Configuration
 PORT=5000
 NODE_ENV=development
-MONGODB_URI=your_mongodb_atlas_uri
-JWT_SECRET=your_jwt_secret
-VOYAGE_API_KEY=your_voyage_key
-GEMINI_API_KEY=your_gemini_key
-FRONTEND_URL=http://localhost:3000,http://localhost:3001,http://localhost:5173
+
+# Database
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/astu-smartdesk
+
+# Authentication
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+
+# AI Services
+VOYAGE_API_KEY=your_voyage_api_key
+GEMINI_API_KEY=your_gemini_api_key
+
+# CORS
+FRONTEND_URL=http://localhost:5173,http://localhost:3000
 ```
 
-Start backend:
-```bash
-npm run dev
-```
+### 3. Frontend Setup
 
-### 2. Frontend setup
 ```bash
 cd ../frontend
 npm install
 ```
 
-Create `frontend/.env.local`:
+Create a `.env.local` file in the `frontend` directory:
+
 ```env
 VITE_API_BASE_URL=http://localhost:5000
 ```
 
-Start frontend:
+### 4. MongoDB Atlas Vector Search Setup
+
+Create a vector search index on your MongoDB Atlas cluster:
+
+1. Navigate to your cluster in MongoDB Atlas
+2. Go to the "Search" tab
+3. Click "Create Search Index"
+4. Choose "JSON Editor"
+5. Use the following configuration:
+
+```json
+{
+  "fields": [
+    {
+      "type": "vector",
+      "path": "embedding",
+      "numDimensions": 1024,
+      "similarity": "cosine"
+    }
+  ]
+}
+```
+
+6. Name the index: `vector_search`
+7. Select the `documents` collection
+
+For detailed instructions, see `backend/SETUP_ATLAS.md`
+
+
+## Running the Application
+
+### Development Mode
+
+**Terminal 1 - Backend:**
 ```bash
+cd backend
 npm run dev
 ```
 
+**Terminal 2 - Frontend:**
 ```bash
-cd backend
-npm run create-admin
+cd frontend
+npm run dev
 ```
 
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000
 
-## RAG Configuration
-Create Atlas Vector Search index named `vector_search` on `documents.embedding`.
+### Production Build
 
-See full guide: `backend/SETUP_ATLAS.md`
+**Backend:**
+```bash
+cd backend
+npm run build
+npm start
+```
 
-## API Overview
-### Auth
-- `POST /api/auth/signup`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-- `PUT /api/auth/profile`
+**Frontend:**
+```bash
+cd frontend
+npm run build
+npm run preview
+```
 
-### Chat / RAG
-- `POST /api/chat/ask`
-- `POST /api/chat/upload/text` (admin/staff)
-- `POST /api/chat/upload/file` (admin/staff)
-- `GET /api/chat/documents`
-- `DELETE /api/chat/documents/:id` (admin/staff)
-- `GET /api/chat/history`
-- `GET /api/chat/history/:sessionId`
-- `DELETE /api/chat/history/:sessionId`
+## API Documentation
 
-## Screenshots
+### Authentication Endpoints
 
+#### Register New User
+```http
+POST /api/auth/signup
+Content-Type: application/json
 
-## Security Notes
-- Do not commit real `.env` secrets.
-- Rotate exposed API keys immediately.
-- Use strong production JWT secrets and restricted CORS origins.
+{
+  "name": "John Doe",
+  "email": "john@astu.edu.et",
+  "universityId": "ASTU/2024/001",
+  "password": "securePassword123"
+}
+```
 
-## Scripts
-### Frontend (`frontend/package.json`)
-- `npm run dev`
-- `npm run build`
-- `npm run preview`
+#### Login
+```http
+POST /api/auth/login
+Content-Type: application/json
 
-### Backend (`backend/package.json`)
-- `npm run dev`
-- `npm run build`
-- `npm run start`
-- `npm run type-check`
-- `npm run create-admin`
+{
+  "email": "john@astu.edu.et",
+  "password": "securePassword123"
+}
+```
+
+#### Get Current User
+```http
+GET /api/auth/me
+Authorization: Bearer <token>
+```
+
+### Chat Endpoints
+
+#### Ask Question
+```http
+POST /api/chat/ask
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "question": "How do I register for courses?",
+  "language": "en",
+  "mode": "general",
+  "sessionId": "optional-session-id"
+}
+```
+
+#### Upload Document (Admin/Staff Only)
+```http
+POST /api/chat/upload/text
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "title": "Course Registration Guide",
+  "content": "Step-by-step guide for course registration...",
+  "category": "academic",
+  "tags": ["registration", "courses"]
+}
+```
+
+#### Get Documents
+```http
+GET /api/chat/documents?category=academic&limit=20&page=1
+Authorization: Bearer <token>
+```
+
+#### Delete Document (Admin/Staff Only)
+```http
+DELETE /api/chat/documents/:id
+Authorization: Bearer <token>
+```
+
+#### Get Chat History
+```http
+GET /api/chat/history?limit=10&page=1
+Authorization: Bearer <token>
+```
+
+#### Delete Chat Session
+```http
+DELETE /api/chat/history/:sessionId
+Authorization: Bearer <token>
+```
+
+## Usage Guide
+
+### For Students
+
+1. **Sign Up**: Create an account using your university email
+2. **Login**: Access the chat interface
+3. **Ask Questions**: Type your question in English or Amharic
+4. **View Sources**: See which documents were used to answer your question
+5. **Chat History**: Access previous conversations from the sidebar
+
+### For Administrators
+
+1. **Login**: Use your admin credentials
+2. **Access Admin Dashboard**: Click on "Admin Dashboard" in the navigation
+3. **Upload Documents**: 
+   - Click "Upload Document"
+   - Enter title, content, and category
+   - Add relevant tags
+   - Submit
+4. **Manage Documents**: View, search, and delete documents
+5. **Monitor Usage**: Check document view counts and user activity
+
+## Configuration
+
+### Document Categories
+
+The system supports the following document categories:
+- `registrar` - Registrar office procedures
+- `academic` - Academic policies and guidelines
+- `department` - Department-specific information
+- `fees` - Fee structures and payment information
+- `deadline` - Important dates and deadlines
+- `lab` - Laboratory and facility information
+- `internship` - Internship opportunities and guidelines
+- `service` - Campus services
+- `policy` - University policies
+- `other` - Miscellaneous information
+
+### Chat Modes
+
+- `general` - Standard Q&A mode
+- `where-to-go` - Provides office locations and required documents
+- `deadline` - Highlights important dates and timelines
+
+## Security Best Practices
+
+### Production Deployment
+
+1. **Environment Variables**: Never commit `.env` files to version control
+2. **JWT Secret**: Use a strong, randomly generated secret (minimum 32 characters)
+3. **API Keys**: Rotate API keys regularly and restrict by IP if possible
+4. **CORS**: Configure `FRONTEND_URL` to only allow your production domain
+5. **HTTPS**: Always use HTTPS in production
+6. **Rate Limiting**: Implement rate limiting on API endpoints
+7. **Input Validation**: All inputs are validated using express-validator
+8. **MongoDB**: Use MongoDB Atlas with IP whitelisting and strong passwords
+
+### API Key Security
+
+If you accidentally expose an API key:
+1. Immediately revoke the key in the respective service dashboard
+2. Generate a new key
+3. Update your `.env` file
+4. Restart the backend server
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: "Failed to connect to MongoDB"
+- **Solution**: Check your `MONGODB_URI` in `.env` and ensure your IP is whitelisted in MongoDB Atlas
+
+**Issue**: "Gemini API key is invalid"
+- **Solution**: Verify your API key at https://aistudio.google.com/app/apikey
+
+**Issue**: "Vector search returned no results"
+- **Solution**: Ensure the vector search index is created correctly in MongoDB Atlas
+
+**Issue**: "CORS error when calling API"
+- **Solution**: Add your frontend URL to `FRONTEND_URL` in backend `.env`
+
+**Issue**: "No documents found"
+- **Solution**: Upload documents through the admin dashboard first
+
+### Debug Mode
+
+Enable detailed logging by setting in `backend/.env`:
+```env
+NODE_ENV=development
+```
+
+## Performance Optimization
+
+- **Caching**: Implement Redis caching for frequently accessed documents
+- **Indexing**: Ensure MongoDB indexes are created on frequently queried fields
+- **Chunking**: Large documents are automatically chunked for better retrieval
+- **Connection Pooling**: MongoDB connection pooling is enabled by default
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the ISC License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Adama Science and Technology University (ASTU)
+- Google Gemini AI
+- Voyage AI
+- MongoDB Atlas
+- The open-source community
+
+## Support
+
+For support, email support@astu.edu.et or open an issue in the GitHub repository.
+
+## Roadmap
+
+- [ ] Voice input support
+- [ ] Mobile application (React Native)
+- [ ] Advanced analytics dashboard
+- [ ] Multi-tenant support for other universities
+- [ ] Integration with university ERP system
+- [ ] Automated document updates from official sources
+- [ ] Student feedback and rating system
+
+---
+
+**Built with ❤️ for ASTU Students**
