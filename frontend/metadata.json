@@ -1,0 +1,8 @@
+{
+  "name": "ASTU SmartDesk",
+  "description": "Official AI-powered student support platform for Adama Science and Technology University, with RAG-based chatbot support and document management.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
