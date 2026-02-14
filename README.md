@@ -162,17 +162,6 @@ Start frontend:
 npm run dev
 ```
 
-## Admin Access
-Public signup always creates `student` users. Use the admin script for admin credentials:
-```bash
-cd backend
-npm run create-admin
-```
-
-Default admin credentials after script reset/create:
-- Email: `admin@astu.edu.et`
-- Password: `Admin123!`
-- University ID: `ugr/00001/24`
 
 ## RAG Configuration
 Create an Atlas Vector Search index named `vector_search` on `documents.embedding`.
@@ -196,20 +185,7 @@ See full guide: `backend/SETUP_ATLAS.md`
 - `GET /api/chat/history/:sessionId`
 - `DELETE /api/chat/history/:sessionId`
 
-## Screenshots
-Store screenshots in `docs/screenshots/` and reference them in Markdown.
 
-Example:
-```md
-![Landing Page](docs/screenshots/landing-page.png)
-![Chat Widget](docs/screenshots/chat-widget.png)
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
-```
-
-Preview:
-![Landing Page](docs/screenshots/landing-page.png)
-![Chat Widget](docs/screenshots/chat-widget.png)
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
 ## Security Notes
 - Do not commit real `.env` secrets.
