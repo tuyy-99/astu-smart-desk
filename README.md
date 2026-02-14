@@ -118,20 +118,7 @@ See full guide: `backend/SETUP_ATLAS.md`
 - `DELETE /api/chat/history/:sessionId`
 
 ## Screenshots
-Store screenshots in `docs/screenshots/` and reference them in Markdown.
 
-Example:
-```md
-![Landing Page](docs/screenshots/landing-page.png)
-![Chat Widget](docs/screenshots/chat-widget.png)
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
-```
-
-Preview section:
-
-![Landing Page](docs/screenshots/landing-page.png)
-![Chat Widget](docs/screenshots/chat-widget.png)
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
 ## Security Notes
 - Do not commit real `.env` secrets.
