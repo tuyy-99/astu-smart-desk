@@ -2,7 +2,8 @@
 
 AI-powered campus assistant for Adama Science and Technology University (ASTU). The app provides multilingual chat, document-based answers (RAG), and admin tools for managing knowledge sources.
 
-<!-- Add banner screenshot here -->
+<img width="1366" height="2135" alt="screencapture-localhost-3000-2026-02-14-21_17_59" src="https://github.com/user-attachments/assets/18edfa42-1a82-406c-9d3f-8d1c07c032f3" />
+
 
 ## Overview
 ASTU SmartDesk is a full-stack web application that uses Retrieval-Augmented Generation (RAG) to answer student questions with context from uploaded documents. It combines MongoDB Atlas Vector Search, Voyage AI embeddings, and Google Gemini to deliver responses in English and Amharic.
