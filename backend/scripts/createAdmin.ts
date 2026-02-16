@@ -17,10 +17,10 @@ async function createAdminUser() {
 
         // Admin user details
         const adminData = {
-            name: 'Admin User',
-            email: 'admin@astu.edu.et',
-            universityId: 'ugr/00001/24',
-            password: 'Admin123!',
+            name: 'Admin',
+            email: 'tu@astu.edu.et',
+            universityId: 'ugr/33335/16',
+            password: 'tu@4321',
             role: 'admin' as const,
             isActive: true
         };
